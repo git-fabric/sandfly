@@ -1,0 +1,26 @@
+{
+  "name": "@git-fabric/sandfly",
+  "version": "0.1.0",
+  "description": "Sandfly Security fabric app — agentless Linux intrusion detection and incident response as a composable MCP layer",
+  "author": "git-fabric",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/git-fabric/sandfly.git" },
+  "keywords": ["sandfly", "security", "intrusion-detection", "mcp", "git-fabric"],
+  "type": "module",
+  "bin": { "fabric-sandfly": "./bin/cli.js" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["bin/", "dist/"],
+  "scripts": { "build": "tsc", "dev": "tsx src/index.ts", "test": "vitest" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0",
+    "vitest": "^4.0.18"
+  },
+  "engines": { "node": ">=20.0.0" }
+}
