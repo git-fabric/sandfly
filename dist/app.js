@@ -81,9 +81,11 @@ export function createApp(adapterOverride) {
         { name: 'sandfly_get_alerts', description: 'Get security alert counts per host. Returns per-host alert/error/pass/total counts from the hosts list (results field), plus a grand total. Use sandfly_get_results with status="alert" to fetch detailed alert records.',
             inputSchema: { type: 'object', properties: {} },
             execute: async () => {
-                const hosts = await sf.get('/v4/hosts');
+                const raw = await sf.get('/v4/hosts');
+                // Sandfly API wraps lists in { data: [...] }
+                const hosts = Array.isArray(raw) ? raw : (raw.data ?? []);
                 if (!Array.isArray(hosts))
-                    return hosts;
+                    return raw;
                 let totalAlerts = 0;
                 const perHost = hosts.map((h) => {
                     const alert = h.results?.alert ?? 0;

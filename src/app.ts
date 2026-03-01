@@ -101,11 +101,12 @@ export function createApp(adapterOverride?: SandflyAdapter): FabricApp {
     { name: 'sandfly_get_alerts', description: 'Get security alert counts per host. Returns per-host alert/error/pass/total counts from the hosts list (results field), plus a grand total. Use sandfly_get_results with status="alert" to fetch detailed alert records.',
       inputSchema: { type: 'object', properties: {} },
       execute: async () => {
-        const hosts = await sf.get('/v4/hosts') as Array<{
-          uuid?: string; address?: string; hostname?: string;
-          results?: { alert?: number; error?: number; pass?: number; total?: number };
-        }>;
-        if (!Array.isArray(hosts)) return hosts;
+        const raw = await sf.get('/v4/hosts') as
+          | Array<{ uuid?: string; address?: string; hostname?: string; results?: { alert?: number; error?: number; pass?: number; total?: number } }>
+          | { data?: Array<{ uuid?: string; address?: string; hostname?: string; results?: { alert?: number; error?: number; pass?: number; total?: number } }> };
+        // Sandfly API wraps lists in { data: [...] }
+        const hosts = Array.isArray(raw) ? raw : ((raw as { data?: typeof raw }).data ?? []);
+        if (!Array.isArray(hosts)) return raw;
         let totalAlerts = 0;
         const perHost = hosts.map((h) => {
           const alert = h.results?.alert ?? 0;
