@@ -98,9 +98,30 @@ export function createApp(adapterOverride?: SandflyAdapter): FabricApp {
         if (a.status) params.status = a.status as string;
         return sf.get('/v4/results', params);
       } },
-    { name: 'sandfly_get_alerts', description: 'Get security alerts grouped by severity.',
-      inputSchema: { type: 'object', properties: { limit: { type: 'number' } } },
-      execute: async (a) => sf.get('/v4/results/alerts', a.limit ? { limit: String(a.limit) } : undefined) },
+    { name: 'sandfly_get_alerts', description: 'Get security alert counts per host. Returns per-host alert/error/pass/total counts from the hosts list (results field), plus a grand total. Use sandfly_get_results with status="alert" to fetch detailed alert records.',
+      inputSchema: { type: 'object', properties: {} },
+      execute: async () => {
+        const hosts = await sf.get('/v4/hosts') as Array<{
+          uuid?: string; address?: string; hostname?: string;
+          results?: { alert?: number; error?: number; pass?: number; total?: number };
+        }>;
+        if (!Array.isArray(hosts)) return hosts;
+        let totalAlerts = 0;
+        const perHost = hosts.map((h) => {
+          const alert = h.results?.alert ?? 0;
+          totalAlerts += alert;
+          return {
+            host_id: h.uuid,
+            address: h.address,
+            hostname: h.hostname,
+            alert,
+            error: h.results?.error ?? 0,
+            pass: h.results?.pass ?? 0,
+            total: h.results?.total ?? 0,
+          };
+        });
+        return { total_alerts: totalAlerts, hosts: perHost };
+      } },
     { name: 'sandfly_get_result', description: 'Get a specific scan result.',
       inputSchema: { type: 'object', properties: { result_id: { type: 'string' } }, required: ['result_id'] },
       execute: async (a) => sf.get(`/v4/results/${a.result_id}`) },
