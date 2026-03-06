@@ -57,6 +57,8 @@ export function createAdapterFromEnv() {
                     cachedToken = null;
                     throw new Error(`Auth expired — retry`);
                 }
+                if (res.status === 404)
+                    return { data: [], message: 'No results found' };
                 throw new Error(`Sandfly GET ${path}: ${res.status} ${await res.text()}`);
             }
             return res.json();

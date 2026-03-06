@@ -67,6 +67,7 @@ export function createAdapterFromEnv(): SandflyAdapter {
       const res = await fetch(`${host}${path}${q}`, { headers: await headers() });
       if (!res.ok) {
         if (res.status === 401) { cachedToken = null; throw new Error(`Auth expired — retry`); }
+        if (res.status === 404) return { data: [], message: 'No results found' };
         throw new Error(`Sandfly GET ${path}: ${res.status} ${await res.text()}`);
       }
       return res.json();
