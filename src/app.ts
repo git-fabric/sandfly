@@ -6,7 +6,8 @@
  * schedules, jump-hosts, notifications, reports, audit
  */
 
-import { createAdapterFromEnv, type SandflyAdapter } from './adapters/env.js';
+import { createAdapterFromEnv } from './adapters/env.js';
+import type { SandflyAdapter } from './types.js';
 
 interface FabricTool {
   name: string;
