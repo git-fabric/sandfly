@@ -10,12 +10,8 @@
  *   SANDFLY_VERIFY_SSL — set to "false" to skip TLS verification (default: true)
  */
 
-export interface SandflyAdapter {
-  get(path: string, params?: Record<string, string>): Promise<unknown>;
-  post(path: string, body?: unknown): Promise<unknown>;
-  put(path: string, body?: unknown): Promise<unknown>;
-  delete(path: string): Promise<unknown>;
-}
+import type { SandflyAdapter } from '../types.js';
+export type { SandflyAdapter } from '../types.js';
 
 let cachedToken: string | null = null;
 let tokenExpiresAt = 0;
