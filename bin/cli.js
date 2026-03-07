@@ -53,14 +53,14 @@ async function registerWithGateway() {
     tailscale_node: 'fabric-sandfly',
     worker_pool: { total: 0, healthy: 0, workers: [] },
     routes: [
-      { prefix: 'fabric.security', local_pref: 100, description: 'Linux security — intrusion detection, host scanning, alerts' },
-      { prefix: 'fabric.security.hosts', local_pref: 100, description: 'Host management — list, add, remove managed hosts' },
-      { prefix: 'fabric.security.scanning', local_pref: 100, description: 'Scan management — start scans, view errors' },
-      { prefix: 'fabric.security.results', local_pref: 100, description: 'Scan results — alerts, summaries, detailed findings' },
-      { prefix: 'fabric.security.sandflies', local_pref: 100, description: 'Detection scripts — list, activate, deactivate sandflies' },
-      { prefix: 'fabric.security.schedules', local_pref: 100, description: 'Scan schedules — create, pause, run, delete' },
-      { prefix: 'fabric.security.credentials', local_pref: 100, description: 'SSH credentials — manage authentication for host scanning' },
-      { prefix: 'fabric.security.audit', local_pref: 100, description: 'Audit log — security event trail' },
+      { prefix: 'fabric.security', local_pref: 100, confidence_floor: 0.7, description: 'Linux security — intrusion detection, host scanning, alerts' },
+      { prefix: 'fabric.security.hosts', local_pref: 100, confidence_floor: 0.7, description: 'Host management — list, add, remove managed hosts' },
+      { prefix: 'fabric.security.scanning', local_pref: 100, confidence_floor: 0.7, description: 'Scan management — start scans, view errors' },
+      { prefix: 'fabric.security.results', local_pref: 100, confidence_floor: 0.7, description: 'Scan results — alerts, summaries, detailed findings' },
+      { prefix: 'fabric.security.sandflies', local_pref: 100, confidence_floor: 0.7, description: 'Detection scripts — list, activate, deactivate sandflies' },
+      { prefix: 'fabric.security.schedules', local_pref: 100, confidence_floor: 0.7, description: 'Scan schedules — create, pause, run, delete' },
+      { prefix: 'fabric.security.credentials', local_pref: 100, confidence_floor: 0.7, description: 'SSH credentials — manage authentication for host scanning' },
+      { prefix: 'fabric.security.audit', local_pref: 100, confidence_floor: 0.7, description: 'Audit log — security event trail' },
     ],
   };
 
