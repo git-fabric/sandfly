@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.svg" alt="sandfly: Agentless Linux intrusion detection and incident response" width="100%"></p>
+
 # @git-fabric/sandfly
 
 Sandfly Security fabric app -- agentless Linux intrusion detection and incident response as a composable MCP layer.
@@ -186,3 +188,8 @@ bin/
 ## License
 
 MIT
+
+<!-- org-footer -->
+---
+
+<p align="center"><sub>Part of <a href="https://github.com/git-fabric">git-fabric</a> · composable fabric apps for Git-native infrastructure · built by <a href="https://github.com/ry-ops">ry-ops</a></sub></p>
