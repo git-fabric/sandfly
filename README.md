@@ -94,10 +94,10 @@ The fabric includes a git-based reference library that shallow-clones official S
 
 | Source | Repository | Description |
 |--------|------------|-------------|
-| `sandfly-setup` | [sandfly-io/sandfly-setup](https://github.com/sandfly-io/sandfly-setup) | Server setup, Docker deployment, configuration |
-| `sandfly-entropyscan` | [sandfly-io/sandfly-entropyscan](https://github.com/sandfly-io/sandfly-entropyscan) | Entropy scanner -- detect packed/encrypted malware |
-| `sandfly-processdecloak` | [sandfly-io/sandfly-processdecloak](https://github.com/sandfly-io/sandfly-processdecloak) | Process decloaker -- find hidden Linux processes |
-| `sandfly-filescan` | [sandfly-io/sandfly-filescan](https://github.com/sandfly-io/sandfly-filescan) | File scanner -- agentless file integrity and threat detection |
+| `sandfly-setup` | [sandflysecurity/sandfly-setup](https://github.com/sandflysecurity/sandfly-setup) | Server setup, Docker deployment, configuration |
+| `sandfly-entropyscan` | [sandflysecurity/sandfly-entropyscan](https://github.com/sandflysecurity/sandfly-entropyscan) | Entropy scanner -- detect packed/encrypted malware |
+| `sandfly-processdecloak` | [sandflysecurity/sandfly-processdecloak](https://github.com/sandflysecurity/sandfly-processdecloak) | Process decloaker -- find hidden Linux processes |
+| `sandfly-filescan` | [sandflysecurity/sandfly-filescan](https://github.com/sandflysecurity/sandfly-filescan) | File scanner -- agentless file integrity and threat detection |
 
 Repos are cloned to `/tmp/fabric-library/` (configurable via `LIBRARY_DIR`) and updated with shallow pulls on subsequent queries.
 
