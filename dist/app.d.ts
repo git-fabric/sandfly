@@ -5,11 +5,17 @@
  * system, hosts, credentials, scanning, results, sandflies,
  * schedules, jump-hosts, notifications, reports, audit
  */
-import { type SandflyAdapter } from './adapters/env.js';
+import type { SandflyAdapter } from './types.js';
 interface FabricTool {
     name: string;
     description: string;
     inputSchema: Record<string, unknown>;
+    annotations?: {
+        readOnlyHint?: boolean;
+        destructiveHint?: boolean;
+        idempotentHint?: boolean;
+        openWorldHint?: boolean;
+    };
     execute: (args: Record<string, unknown>) => Promise<unknown>;
 }
 interface FabricApp {
